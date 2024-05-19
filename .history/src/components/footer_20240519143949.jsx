@@ -2,7 +2,7 @@ import Logo from "../assets/logo.png";
 
 export function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 sm:px-8 px-4 py-2 z-10 w-full sm:h-[122px] h-[182px] bg-[#5d04d9] flex flex-col items-center justify-start text-white">
+    <footer className="fixed bottom-0 left-0 right-0 sm:px-8 px-4 py-2 z-10 w-full h-[182px] bg-[#5d04d9] flex flex-col items-center justify-start text-white">
       <img
         src={Logo}
         alt=""

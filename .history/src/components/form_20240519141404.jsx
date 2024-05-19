@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export function Form() {
+  const [produtos, setProdutos] = useState([]);
   const [produtoAtual, setProdutoAtual] = useState({
     nome: "",
     preco: "",
@@ -33,23 +34,17 @@ export function Form() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Adiciona o produto atual ao localStorage
-    const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
-    produtos.push(produtoAtual);
-    localStorage.setItem("produtos", JSON.stringify(produtos));
-
-    // Limpa os campos após adicionar o produto
-    setProdutoAtual({
-      nome: "",
-      preco: "",
-      imagem: "",
-    });
+    setProdutos((prevProdutos) => [...prevProdutos, produtoAtual]);
+    localStorage.setItem(
+      "produtos",
+      JSON.stringify([...produtos, produtoAtual])
+    );
+    // Você pode querer adicionar uma mensagem de confirmação aqui
   };
 
   return (
     <div className="flex flex-col gap-9 items-center justify-top">
-      <h2 className="font-['Press_Start_2P'] font-normal text-2xl">
+      <h2 className="font-['Press_Start_2P'] font-normal  text-2xl">
         Adicionar Produtos:
       </h2>
       <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
@@ -81,23 +76,10 @@ export function Form() {
         />
 
         <div className="flex justify-center gap-3">
-          <button
-            type="submit"
-            className="w-[188px] h-[55px] border-[#03318c] bg-[#03318c] rounded-2xl border-4 text-white text-xl font-semibold"
-          >
+          <button className="w-[188px] h-[55px] border-[#03318c] bg-[#03318c] rounded-2xl border-4 text-white text-xl font-semibold">
             Guardar
           </button>
-          <button
-            type="button"
-            onClick={() =>
-              setProdutoAtual({
-                nome: "",
-                preco: "",
-                imagem: "",
-              })
-            }
-            className="w-[188px] h-[55px] border-[#03318c] bg-white rounded-2xl border-4 text-[#03318c] text-xl font-semibold"
-          >
+          <button className="w-[188px] h-[55px] border-[#03318c] bg-white rounded-2xl border-4 text-[#03318c] text-xl font-semibold">
             Limpar
           </button>
         </div>

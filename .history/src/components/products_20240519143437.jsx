@@ -12,15 +12,16 @@ export function Products() {
     }
   }, []);
 
+  // Atualiza o estado dos produtos e salva no localStorage quando houver mudanças
+  useEffect(() => {
+    localStorage.setItem("produtos", JSON.stringify(produtos));
+  }, [produtos]);
+
   const addProduto = (novoProduto) => {
-    setProdutos((prevProdutos) => {
-      const newProdutos = [...prevProdutos, novoProduto];
-      localStorage.setItem("produtos", JSON.stringify(newProdutos));
-      return newProdutos;
-    });
+    setProdutos((prevProdutos) => [...prevProdutos, novoProduto]);
   };
 
-  if (!produtos) {
+  if (produtos.length === 0) {
     return <div>Nenhum produto salvo</div>;
   }
 
@@ -29,9 +30,9 @@ export function Products() {
       <h2 className="font-['Press_Start_2P'] font-normal  text-2xl">
         Meus Produtos:
       </h2>
-      <div className="flex flex-row-reverse w-full  m-8 gap-32 p-8">
+      <div className="flex flex-row w-full  m-8 gap-32 p-8">
         <Form addProduto={addProduto} />
-        <div className="flex flex-wrap gap-2 justify-center">
+        <div className="flex flex-wrap gap-2 justify-center md:w-1/2">
           {produtos.map((produto, i) => {
             return (
               <div

@@ -29,9 +29,9 @@ export function Products() {
       <h2 className="font-['Press_Start_2P'] font-normal  text-2xl">
         Meus Produtos:
       </h2>
-      <div className="flex flex-row-reverse w-full  m-8 gap-32 p-8">
+      <div className="flex flex-row w-full  m-8 gap-4 p-8">
         <Form addProduto={addProduto} />
-        <div className="flex flex-wrap gap-2 justify-center">
+        <div className="flex flex-wrap gap-2  justify-center">
           {produtos.map((produto, i) => {
             return (
               <div
